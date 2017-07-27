@@ -1,9 +1,9 @@
 <launch>
-
-  <arg name="setting_file" default="/home/nvidia/quemaofei/ORB_SLAM2_GPU/gpu/TX1.yaml" />
-  <arg name="voc_file"     default="/home/nvidia/quemaofei/ORB_SLAM2_GPU/Vocabulary/ORBvoc.txt.bin" />
+/home/nvidia/orb/ORB_SLAM2_GPU-master/gpu
+  <arg name="setting_file" default="/home/nvidia/orb/ORB_SLAM2_GPU-master/gpu/TX1.yaml" />
+  <arg name="voc_file"     default="/home/nvidia/orb/ORB_SLAM2_GPU-master/Vocabulary/ORBvoc.txt.bin" />
   <!---
-  <arg name="map_name"     default="/home/nvidia/quemaofei/ORB_SLAM2_GPU/Examples/ROS/ORB_SLAM2_GPU/launch/default_map.bin" />
+  <arg name="map_name"     default="/home/nvidia/orb/ORB_SLAM2_GPU-master/Examples/ROS/ORB_SLAM2_GPU/launch/default_map.bin" />
   -->
   <arg name="map_name"     default="false" />
 

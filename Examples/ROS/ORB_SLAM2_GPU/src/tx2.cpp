@@ -81,10 +81,11 @@ void PublishPose(ros::Publisher* pub, const cv::Mat& Tcw)
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "tx2");
+	cout<<"-----------1------------"<<endl;
     //ros::start();
     ros::NodeHandle nh_;
     ros::Publisher pos_pub = nh_.advertise<geometry_msgs::PoseStamped>("ORB_SLAM/pose", 5);
-
+	cout<<"-----------2------------"<<endl;
     if(argc != 4) {
         cerr << endl
              << "Usage: rosrun ORB_SLAM2_GPU tx2 [path to vocabulary] [path to settings] [whether use Map]" << endl;
@@ -95,17 +96,18 @@ int main(int argc, char **argv)
     time_t now = time(0);// 基于当前系统的当前日期/时间  
     tm *ltm = localtime(&now);
     char save_time[150]; 
-    sprintf(save_time, "%d_%d_%d_%d_%d",1900 + ltm->tm_year,1 + ltm->tm_mon,ltm->tm_mday,ltm->tm_hour,ltm->tm_min ); 
+    sprintf(save_time, "%d_%d_%d_%d_%d",1900 + ltm->tm_year,1 + ltm->tm_mon,ltm->tm_mday,ltm->tm_hour,ltm->tm_min);
+    string save_time_name(save_time); 
 //---------------------------------------------------------------------
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     bool bReuseMap = false, bUseViewer = true;
-    string MapName = "/home/nvidia/quemaofei/ORB_SLAM2_GPU/Examples/ROS/ORB_SLAM2_GPU/map/"+save_time+".bin";
+    string MapName = "/home/nvidia/quemaofei/ORB_SLAM2_GPU/Examples/ROS/ORB_SLAM2_GPU/map/"+save_time_name+".bin";
     if(strcmp(argv[3], "false") != 0)
     {
         bReuseMap = true;
         MapName = argv[3];
     }
-
+	cout<<"-----------3------------"<<endl;
     ORB_SLAM2::System SLAM(
         argv[1], argv[2], ORB_SLAM2::System::MONOCULAR, bUseViewer, bReuseMap, MapName);
 
