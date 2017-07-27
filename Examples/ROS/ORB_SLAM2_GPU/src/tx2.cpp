@@ -16,6 +16,10 @@
 #include "../../../include/System.h"
 #include "../../../include/Converter.h"
 #include "../../../include/Utils.hpp"
+#include <ctime>
+
+
+
 
 using namespace std;
 
@@ -87,10 +91,15 @@ int main(int argc, char **argv)
         ros::shutdown();
         return 1;
     }
-
+//------------------time--------------------------------------------
+    time_t now = time(0);// 基于当前系统的当前日期/时间  
+    tm *ltm = localtime(&now);
+    char save_time[150]; 
+    sprintf(save_time, "%d_%d_%d_%d_%d",1900 + ltm->tm_year,1 + ltm->tm_mon,ltm->tm_mday,ltm->tm_hour,ltm->tm_min ); 
+//---------------------------------------------------------------------
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     bool bReuseMap = false, bUseViewer = true;
-    string MapName = "/home/nvidia/quemaofei/ORB_SLAM2_GPU/Examples/ROS/ORB_SLAM2_GPU/launch/default_map.bin";
+    string MapName = "/home/nvidia/quemaofei/ORB_SLAM2_GPU/Examples/ROS/ORB_SLAM2_GPU/map/"+save_time+".bin";
     if(strcmp(argv[3], "false") != 0)
     {
         bReuseMap = true;
